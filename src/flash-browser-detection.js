@@ -2,7 +2,7 @@
  * Based on 
  * https://code.google.com/p/doctype-mirror/wiki/ArticleDetectFlash#The_code
  */
-(function() {
+(function($, undefined) {
   /**
    * Derived from Apple's suggested sniffer.
    * @param {String} desc e.g. Shockwave Flash 7.0 r61
@@ -67,7 +67,13 @@
    * Append the no-flash class to html tag if the browser does not support Flash
    */
   if(!hasFlash) {
-    document.getElementsByTagName('html').item().classList.add('no-flash');
+    if ($ !== undefined) {
+      // Use jQuery if it's present (manage cross-browser show)
+      $('html').addClass('no-flash');
+    } else {
+      // This method doesn't support IE8/9
+      document.getElementsByTagName('html').item().classList.add('no-flash');
+    }
   }
 
-})();
+})(this.jQuery);
