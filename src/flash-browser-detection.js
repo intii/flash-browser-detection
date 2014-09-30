@@ -66,8 +66,8 @@
   /**
    * Append the no-flash class to html tag if the browser does not support Flash
    */
-  if(!hasFlash) {
-    document.getElementsByTagName('html').item().classList.add('no-flash');
+  if (!hasFlash) {
+    document.documentElement.className += ' no-flash';
   }
 
 })();
